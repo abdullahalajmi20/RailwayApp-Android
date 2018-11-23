@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="edtheight">45dp</dimen>
+    <dimen name="btn_textsize">14dp</dimen>
+</resources>

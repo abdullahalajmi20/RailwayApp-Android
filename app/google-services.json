@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "792717584167",
+    "firebase_url": "https://railway-dbc6b.firebaseio.com",
+    "project_id": "railway-dbc6b",
+    "storage_bucket": "railway-dbc6b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792717584167:android:4d4308cf3e47a409",
+        "android_client_info": {
+          "package_name": "com.sn.railway"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "792717584167-pbsp222qavhc0vmsq0jks3tm6bqoksnv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_ulIVQPSzPgO4sTMsXPUL25P3fCgTSA8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

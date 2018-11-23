@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Railway App</string>
+
+    <string name="ok">Ok</string>
+    <string name="wouldyouliketoexit">Do you want to exit the application?</string>
+    <string name="wouldyouliketologout">Do you want to logout from the application?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="networknotavailable">Internet not available. Please try again!!!</string>
+
+
+    <string name="password">Password</string>
+    <string name="login">LogIn</string>
+    <string name="signup">Register</string>
+
+    <string name="forgotpassword">Forgot Password</string>
+
+
+    <string name="validation_firstname">Please enter first name</string>
+    <string name="validation_lastname">Please enter last name</string>
+    <string name="validation_email">Please enter email address</string>
+
+    <string name="validation_valid_email">Please enter valid email address</string>
+    <string name="validation_password">Please enter password</string>
+    <string name="validation_password_length">Please enter minimum 4 character password</string>
+
+     <string name="digit">abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@._-</string>
+
+
+    <string name="emailaddress">Email Address</string>
+    <string name="enterpassword">Enter Password</string>
+    <string name="firstname">Enter First Name</string>
+    <string name="lastname">Enter Last Name</string>
+    <string name="email">Enter Email Address</string>
+    <string name="phone">Phone</string>
+    <string name="changepassword">Change Password</string>
+</resources>

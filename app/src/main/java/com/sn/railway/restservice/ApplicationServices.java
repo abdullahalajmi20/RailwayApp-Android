@@ -3,6 +3,7 @@ package com.sn.railway.restservice;
 import com.sn.railway.constant.Constant;
 import com.sn.railway.objects.CommonResponse_Object;
 import com.sn.railway.objects.Login_Object;
+import com.sn.railway.objects.Train_Object;
 
 
 import retrofit.Call;
@@ -56,6 +57,12 @@ public interface ApplicationServices {
             @Field(Constant.EMAIL) String email,
             @Field(Constant.oldPassword) String oldPassword,
             @Field(Constant.newPassword) String newPassword
+    );
+    @POST(RestClient.getTrainList)
+    @FormUrlEncoded
+    Call<Train_Object> getTrainList(
+            @Field(Constant.LAT) double lat,
+            @Field(Constant.LON) double lon
     );
 
 

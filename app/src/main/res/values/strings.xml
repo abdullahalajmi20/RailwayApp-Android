@@ -34,4 +34,8 @@
     <string name="email">Enter Email Address</string>
     <string name="phone">Phone</string>
     <string name="changepassword">Change Password</string>
+    <string name="home">Home</string>
+    <string name="search">Search train</string>
+    <string name="cancel">Cancel</string>
+    <string name="order">Order</string>
 </resources>

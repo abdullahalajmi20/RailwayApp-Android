@@ -55,16 +55,11 @@ public class Splash_Activity extends Base_Activity {
         mRunnable = new Runnable() {
             @Override
             public void run() {
-
-
                 if (login_object == null) {
-
                     callAndFinishActivity(LoginActivity.class, null);
                 } else {
                     callAndFinishActivity(HomeActivity.class, null);
-
                 }
-
                 finishAffinity();
             }
         };

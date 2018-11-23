@@ -22,6 +22,8 @@ public class Constant {
     public static final String lastName = "lastName";
     public static final String name = "name";
     public static final String userId = "userId";
+    public static final String LAT = "latitude";
+    public static final String LON = "longitude";
 
-    public static final String email = "email";
+
 }

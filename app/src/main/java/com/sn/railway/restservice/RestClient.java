@@ -26,6 +26,7 @@ public class RestClient
 
      public static final String loginUser = BASE_URL+"login";
     public static final String forgotPassword = BASE_URL+"forgotPassword";
+    public static final String getTrainList = BASE_URL+"getTrainList";
 
 
     public static final String changePassword = BASE_URL+"changePassword";

@@ -88,6 +88,12 @@ public class LoginActivity extends Base_Activity implements View.OnClickListener
                 if (isValidEmail(edtEmailId,getString(R.string.validation_valid_email))) {
                     if (isEditTextValid(edtPassword,getString(R.string.validation_password))) {
                         if (isValidPassWordLength(edtPassword,getString(R.string.validation_password_length))) {
+                            Login_Object login_object = new Login_Object();
+                            login_object.setUserId(1);
+                            login_object.setEmail(getEditText(edtEmailId));
+                            login_object.setFirstName("Abdullah");
+                            login_object.setLastName("Alajmi");
+                            SharedPreferanceClass.setCustomObject(getApplicationContext(), SharedPreferanceClass.LOGIN, login_object);
                             callAndFinishActivity(HomeActivity.class, null);
                            // callLoginAPI();
                         }

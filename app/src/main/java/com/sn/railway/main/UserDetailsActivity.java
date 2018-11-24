@@ -50,6 +50,7 @@ public class UserDetailsActivity extends Base_Activity {
     SnEditText edtPhone;
 
 
+    Login_Object login_object;
 
 
     @Override
@@ -61,16 +62,22 @@ public class UserDetailsActivity extends Base_Activity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        login_object = getUserObject();
+
+        edtEmailId.setText(login_object.getEmail());
+        edtFirstName.setText(login_object.getFirstName());
+        edtLastName.setText(login_object.getLastName());
+        edtPhone.setText(login_object.getPhone());
 
     }
 
 
     @OnClick(R.id.btnLogin)
     public void onClickLogin(View view) {
-        forgotPasswordProcess();
+        updateProcess();
     }
 
-    //ESP 4,5,6
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -82,31 +89,21 @@ public class UserDetailsActivity extends Base_Activity {
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
 
-    @Override
-    public void onPause() {
-        EventBus.getDefault().unregister(this);
-        super.onPause();
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(String liveFeed) {
-    }
-
-    public void forgotPasswordProcess() {
+    public void updateProcess() {
         if (isNetworkAvailable()) {
             if (isEditTextValid(edtFirstName, getString(R.string.validation_firstname))) {
                 if (isEditTextValid(edtLastName, getString(R.string.validation_lastname))) {
                     if (isEditTextValid(edtEmailId, getString(R.string.validation_email))) {
                         if (isValidEmail(edtEmailId, getString(R.string.validation_valid_email))) {
-                            if (isEditTextValid(edtPassword, getString(R.string.validation_password))) {
-                                if (isValidPassWordLength(edtPassword, getString(R.string.validation_password_length))) {
-                                    register();
+                            if (isEditTextValid(edtPhone, getString(R.string.validation_mobile))) {
+                                if (isValidMobile(edtPhone, getString(R.string.validation_valid_mobile))) {
+                                    login_object.setLastName(getEditText(edtLastName));
+                                    login_object.setFirstName(getEditText(edtFirstName));
+                                    login_object.setPhone(getEditText(edtPhone));
+                                    SharedPreferanceClass.setCustomObject(getApplicationContext(), SharedPreferanceClass.LOGIN, login_object);
+                                    showToastWithClose("Profile updated");
+                                    //   register();
                                 }
                             }
 
@@ -137,7 +134,9 @@ public class UserDetailsActivity extends Base_Activity {
                 public void onResponse(Response<Login_Object> response, Retrofit retrofit) {
                     Login_Object object = response.body();
                     if (object != null && !object.isError()) {
-                        callLoginAPI();
+                        SharedPreferanceClass.setCustomObject(getApplicationContext(), SharedPreferanceClass.LOGIN, object);
+                        finishActivity();
+
                     } else if (response.errorBody() != null) {
                         try {
                             showErrorMsg(response.errorBody().string());
@@ -154,46 +153,6 @@ public class UserDetailsActivity extends Base_Activity {
                 public void onFailure(Throwable t) {
                     dismissDialog();
                     showToast(t.getMessage());
-                    Log.d("CallBack", " Throwable is " + t);
-                }
-            });
-
-
-        }
-    }
-
-    public void callLoginAPI() {
-        if (isNetworkAvailable()) {
-            showDialog();
-            Call<Login_Object> call = RailwayApplication.getRestClient().getApplicationServices().loginUser(
-                    getEditText(edtEmailId),
-                    getEditText(edtPassword), Constant.GCM_TOKEN
-            );
-
-            call.enqueue(new Callback<Login_Object>() {
-                @Override
-                public void onResponse(Response<Login_Object> response, Retrofit retrofit) {
-                    Login_Object object = response.body();
-                    if (object != null && !object.isError()) {
-                        SharedPreferanceClass.setCustomObject(getApplicationContext(), SharedPreferanceClass.LOGIN, object);
-                        restartActivity(HomeActivity.class, null);
-
-                    } else if (response.errorBody() != null) {
-                        try {
-                            showErrorMsg(response.errorBody().string());
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    dismissDialog();
-
-                }
-
-                @Override
-                public void onFailure(Throwable t) {
-                    dismissDialog();
-                    showToast(t.getMessage());
-
                     Log.d("CallBack", " Throwable is " + t);
                 }
             });

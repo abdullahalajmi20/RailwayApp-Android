@@ -93,6 +93,7 @@ public class LoginActivity extends Base_Activity implements View.OnClickListener
                             login_object.setEmail(getEditText(edtEmailId));
                             login_object.setFirstName("Abdullah");
                             login_object.setLastName("Alajmi");
+                            login_object.setPhone("66558951");
                             SharedPreferanceClass.setCustomObject(getApplicationContext(), SharedPreferanceClass.LOGIN, login_object);
                             callAndFinishActivity(HomeActivity.class, null);
                            // callLoginAPI();

@@ -35,7 +35,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
             android:background="@android:color/transparent"
-            android:onClick="onClickSearch"
+
             android:text="@string/cancel"
             android:textColor="@color/white"
             android:textSize="14dp" />

@@ -5,16 +5,15 @@ import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.sn.railway.Base_Activity;
 import com.sn.railway.R;
 import com.sn.railway.app.RailwayApplication;
+import com.sn.railway.constant.SharedPreferanceClass;
 import com.sn.railway.custom.SnEditText;
 import com.sn.railway.objects.Login_Object;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -53,18 +52,11 @@ public class ChangePasswordActivity extends Base_Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changepassword);
-
         ButterKnife.bind(this);
 
-
-        String title = "Profile";
-
         ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(title);
         edtEmailId.setText(getUserObject().getEmail());
 
     }
@@ -76,33 +68,6 @@ public class ChangePasswordActivity extends Base_Activity {
         createUserProccess();
     }
 
-    //ESP 4,5,6
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onPause() {
-        EventBus.getDefault().unregister(this);
-        super.onPause();
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(String liveFeed) {
-    }
 
     public void createUserProccess() {
         if (Base_Activity.isNetworkAvailable()) {
@@ -111,7 +76,7 @@ public class ChangePasswordActivity extends Base_Activity {
                 if (Base_Activity.isValidPassWordLength(edtPassword, getString(R.string.validation_password_length))) {
                     if (Base_Activity.isEditTextValid(edtNewPassword, "Please enter new password")) {
                         if (Base_Activity.isValidPassWordLength(edtNewPassword, getString(R.string.validation_password_length))) {
-                            register();
+                            changePassword();
                         }
                     }
                 }
@@ -120,7 +85,7 @@ public class ChangePasswordActivity extends Base_Activity {
         }
     }
 
-    public void register() {
+    public void changePassword() {
         if (Base_Activity.isNetworkAvailable()) {
             Base_Activity.showDialog();
             Call<Login_Object> call = RailwayApplication.getRestClient().getApplicationServices().changePassword(
@@ -134,7 +99,10 @@ public class ChangePasswordActivity extends Base_Activity {
                 public void onResponse(Response<Login_Object> response, Retrofit retrofit) {
                     Login_Object object = response.body();
                     if (object != null && !object.isError()) {
-                        showToastWithClose(object.getMessage());
+                        SharedPreferanceClass.setCustomObject(getApplicationContext(),SharedPreferanceClass.LOGIN,null);
+                        Base_Activity.restartActivity(Splash_Activity.class,null);
+                        Toast.makeText(getApplicationContext(),"Your password changed.",Toast.LENGTH_SHORT).show();
+
                     } else if (response.errorBody() != null) {
                         try {
                             Base_Activity.showErrorMsg(response.errorBody().string());

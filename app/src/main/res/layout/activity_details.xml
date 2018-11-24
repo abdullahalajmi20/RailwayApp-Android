@@ -6,6 +6,11 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/railway" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,6 +20,24 @@
         android:paddingTop="15dp"
         android:paddingRight="10dp"
         android:paddingBottom="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.sn.railway.custom.SnTextView
+                android:id="@+id/tvAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="KWD 99"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
 
         <com.sn.railway.custom.SnTextView
             android:id="@+id/tvName"
@@ -68,14 +91,36 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="37 h 30 m"
-                    android:textSize="13dp" />
+                    android:textColor="@color/textHintColor"
+                    android:textSize="11dp" />
 
-                <View
+                <RelativeLayout
                     android:layout_width="75dp"
-                    android:layout_height="1dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/divider"></View>
+                    android:layout_marginTop="5dp">
+
+                    <com.sn.railway.custom.SnTextView
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/circle" />
+
+                    <View
+                        android:layout_width="63dp"
+                        android:layout_height="1dp"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:background="@color/textHintColor"></View>
+
+                    <com.sn.railway.custom.SnTextView
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_centerVertical="true"
+
+                        android:background="@drawable/circle" />
+                </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -106,6 +151,24 @@
             </LinearLayout>
         </RelativeLayout>
 
+        <LinearLayout
+            android:id="@+id/linBookTicket"
+            android:layout_width="230dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/round_background"
+            android:orientation="horizontal">
+
+            <com.sn.railway.custom.SnTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Book Now"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 
     <View

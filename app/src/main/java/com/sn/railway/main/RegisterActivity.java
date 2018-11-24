@@ -55,10 +55,8 @@ public class RegisterActivity extends Base_Activity {
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
 
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-
 
     }
 
@@ -68,7 +66,7 @@ public class RegisterActivity extends Base_Activity {
         registerProcess();
     }
 
-    //ESP 4,5,6
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -102,10 +100,15 @@ public class RegisterActivity extends Base_Activity {
                 if (Base_Activity.isEditTextValid(edtLastName, getString(R.string.validation_lastname))) {
                     if (Base_Activity.isEditTextValid(edtEmailId, getString(R.string.validation_email))) {
                         if (Base_Activity.isValidEmail(edtEmailId, getString(R.string.validation_valid_email))) {
-                            if (Base_Activity.isEditTextValid(edtPassword, getString(R.string.validation_password))) {
-                                if (Base_Activity.isValidPassWordLength(edtPassword, getString(R.string.validation_password_length))) {
-                                    {
-                                        register();
+                            if (isEditTextValid(edtPhone, getString(R.string.validation_mobile))) {
+                                if (isValidMobile(edtPhone, getString(R.string.validation_valid_mobile))) {
+                                    if (Base_Activity.isEditTextValid(edtPassword, getString(R.string.validation_password))) {
+                                        if (Base_Activity.isValidPassWordLength(edtPassword, getString(R.string.validation_password_length))) {
+                                            {
+                                                showToastWithClose("Registered successfully.");
+                                                //  register();
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -137,7 +140,6 @@ public class RegisterActivity extends Base_Activity {
                     Login_Object object = response.body();
                     if (object != null && !object.isError()) {
                         SharedPreferanceClass.setCustomObject(getApplicationContext(), SharedPreferanceClass.LOGIN, object);
-
                         Base_Activity.restartActivity(HomeActivity.class, null);
 
 

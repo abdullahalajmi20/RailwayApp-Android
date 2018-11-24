@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Railway App</string>
 
+    <string name="map_api_key">AIzaSyAW2cybhVGkYYGOZnifnOcFTNDXMhiDXhI</string>
     <string name="ok">Ok</string>
     <string name="wouldyouliketoexit">Do you want to exit the application?</string>
     <string name="wouldyouliketologout">Do you want to logout from the application?</string>
@@ -38,4 +39,12 @@
     <string name="search">Search train</string>
     <string name="cancel">Cancel</string>
     <string name="order">Order</string>
+    <string name="orderhistory">Order history</string>
+    <string name="setting">Setting</string>
+    <string name="profile">Profile</string>
+    <string name="validation_mobile">Please enter mobile number</string>
+    <string name="validation_valid_mobile">Please enter valid mobile number</string>
+    <string name="traindetails">Train Details</string>
+    <string name="fromlocation">From Location</string>
+    <string name="to_location">To Location</string>
 </resources>

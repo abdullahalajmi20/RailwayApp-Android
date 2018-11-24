@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.sn.railway.custom.SnEditText
+                    android:id="@+id/edtFromLocation"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/edtheight"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:hint="@string/fromlocation"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+
+                    android:focusable="false"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/textHintColor" />
+            </android.support.design.widget.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/imgFromClear"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/error" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.sn.railway.custom.SnEditText
+                    android:id="@+id/edtToLocation"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/edtheight"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:hint="@string/to_location"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+
+                    android:focusable="false"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/textHintColor" />
+            </android.support.design.widget.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/imgToClear"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/error" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

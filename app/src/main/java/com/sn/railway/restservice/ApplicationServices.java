@@ -3,8 +3,11 @@ package com.sn.railway.restservice;
 import com.sn.railway.constant.Constant;
 import com.sn.railway.objects.CommonResponse_Object;
 import com.sn.railway.objects.Login_Object;
+import com.sn.railway.objects.Order_Object;
 import com.sn.railway.objects.Train_Object;
 
+
+import java.util.List;
 
 import retrofit.Call;
 import retrofit.http.Body;
@@ -29,6 +32,7 @@ public interface ApplicationServices {
             @Field(Constant.PASSWORD) String password,
             @Field(Constant.DEVICE_TOKEN) String token
     );
+
     @POST(RestClient.register)
     @FormUrlEncoded
     Call<Login_Object> register(
@@ -58,6 +62,7 @@ public interface ApplicationServices {
             @Field(Constant.oldPassword) String oldPassword,
             @Field(Constant.newPassword) String newPassword
     );
+
     @POST(RestClient.getTrainList)
     @FormUrlEncoded
     Call<Train_Object> getTrainList(
@@ -65,6 +70,17 @@ public interface ApplicationServices {
             @Field(Constant.LON) double lon
     );
 
+    @POST(RestClient.bookTrain)
+    @FormUrlEncoded
+    Call<Login_Object> bookTrain(
+            @Field(Constant.userId) int userID, @Field(Constant.trainId) int trainId
+    );
+
+  @POST(RestClient.getOrders)
+    @FormUrlEncoded
+    Call<List<Order_Object>> getOrders(
+            @Field(Constant.userId) int userID
+    );
 
 
 }

@@ -9,13 +9,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.sn.railway.Base_Activity;
 import com.sn.railway.R;
 import com.sn.railway.app.RailwayApplication;
 import com.sn.railway.custom.SnTextView;
-import com.sn.railway.objects.Train_Object;
+import com.sn.railway.objects.Order_Object;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +29,14 @@ import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class HomeFragment extends Fragment {
+public class OrderHistoryFragment extends Fragment {
 
 
     @Bind(R.id.rv)
     RecyclerView rv;
+
+    @Bind(R.id.linSearch)
+    LinearLayout linSearch;
 
     MyRecyclerViewAdapter myRecyclerViewAdapter;
 
@@ -57,8 +62,9 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(llm);
 
+        linSearch.setVisibility(View.GONE);
 
-        List<Train_Object> myDataset = new ArrayList<>();
+        List<Order_Object> myDataset = new ArrayList<>();
         myRecyclerViewAdapter = new MyRecyclerViewAdapter(myDataset);
 
         rv.setAdapter(myRecyclerViewAdapter);
@@ -75,26 +81,17 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-    public void getTrainList(double lat,double lon) {
+    public void getOrders(int orderId) {
         if (Base_Activity.isNetworkAvailable()) {
             Base_Activity.showDialog();
-            Call<Train_Object> call = RailwayApplication.getRestClient().getApplicationServices().getTrainList(lat,lon
+            Call<List<Order_Object>> call = RailwayApplication.getRestClient().getApplicationServices().getOrders(orderId);
 
-            );
-
-            call.enqueue(new Callback<Train_Object>() {
+            call.enqueue(new Callback<List<Order_Object>>() {
                 @Override
-                public void onResponse(Response<Train_Object> response, Retrofit retrofit) {
-                    Train_Object object = response.body();
-                    if (object != null && !object.isError()) {
-                        //getmanageUsers();
-                        Toast.makeText(getActivity(), object.getMessage(), Toast.LENGTH_SHORT).show();
-                    } else if (response.errorBody() != null) {
-                        try {
-                            Base_Activity.showErrorMsg(response.errorBody().string());
-                        } catch (Exception e) {
+                public void onResponse(Response<List<Order_Object>> response, Retrofit retrofit) {
+                    List<Order_Object> object = response.body();
+                    if (object != null) {
 
-                        }
                     }
 
 
@@ -117,7 +114,7 @@ public class HomeFragment extends Fragment {
 
     public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.DataObjectHolder> {
 
-        private List<Train_Object> mDataset;
+        private List<Order_Object> mDataset;
 
         private MyClickListener myClickListener;
 
@@ -164,15 +161,15 @@ public class HomeFragment extends Fragment {
             this.myClickListener = myClickListener;
         }
 
-        public Train_Object getSelectedItem(int position) {
+        public Order_Object getSelectedItem(int position) {
             return mDataset.get(position);
         }
 
-        public MyRecyclerViewAdapter(List<Train_Object> myDataset) {
+        public MyRecyclerViewAdapter(List<Order_Object> myDataset) {
             mDataset = myDataset;
         }
 
-        public void update(List<Train_Object> myDataset) {
+        public void update(List<Order_Object> myDataset) {
             mDataset = myDataset;
             notifyDataSetChanged();
         }
@@ -181,7 +178,7 @@ public class HomeFragment extends Fragment {
         public MyRecyclerViewAdapter.DataObjectHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.fragment_home_list_item, parent, false);
+                    .inflate(R.layout.fragment_order_list_item, parent, false);
 
 
             MyRecyclerViewAdapter.DataObjectHolder dataObjectHolder = new MyRecyclerViewAdapter.DataObjectHolder(view);
@@ -190,12 +187,12 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(final MyRecyclerViewAdapter.DataObjectHolder holder, int position) {
-           /* final Train_Object object = mDataset.get(position);
+           /* final List<Order_Object> object = mDataset.get(position);
             holder.tvName.setText(object.getName() );
             */
         }
 
-        public void addItem(Train_Object dataObj, int index) {
+        public void addItem(Order_Object dataObj, int index) {
             mDataset.add(dataObj);
             notifyItemInserted(index);
 

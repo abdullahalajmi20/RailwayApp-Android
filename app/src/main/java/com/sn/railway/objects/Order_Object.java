@@ -2,8 +2,10 @@ package com.sn.railway.objects;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Train_Object extends CommonResponse_Object{
+public class Order_Object extends CommonResponse_Object{
 
+    private int orderID;
+    private String orderDateTime;
     private String ticketPrice;
     private String trainno;
     private String name;
@@ -20,6 +22,22 @@ public class Train_Object extends CommonResponse_Object{
     private String datefrom;
     private String dateto;
     private String traveltime;
+
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
+
+    public String getOrderDateTime() {
+        return orderDateTime;
+    }
+
+    public void setOrderDateTime(String orderDateTime) {
+        this.orderDateTime = orderDateTime;
+    }
 
     public String getTicketPrice() {
         return ticketPrice;

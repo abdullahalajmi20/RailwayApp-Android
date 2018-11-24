@@ -30,6 +30,9 @@ public class RestClient
 
 
     public static final String changePassword = BASE_URL+"changePassword";
+    public static final String getOrders = BASE_URL+"orders";
+
+    public static final String bookTrain = BASE_URL+"bookTrain";
 
 
 

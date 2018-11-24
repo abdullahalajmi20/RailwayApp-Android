@@ -51,7 +51,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
-            android:text="User Details"
+            android:text="@string/profile"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/textColor"
             android:textStyle="bold"
@@ -118,6 +118,8 @@
                         android:imeOptions="actionNext"
                         android:inputType="textEmailAddress"
                         android:singleLine="true"
+                        android:enabled="false"
+                        android:focusable="false"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="@color/textColor"
                         android:textColorHint="@color/textHintColor" />
@@ -144,6 +146,7 @@
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:layout_height="wrap_content">
 
                     <com.sn.railway.custom.SnEditText

@@ -9,13 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.sn.railway.Base_Activity;
 import com.sn.railway.R;
 import com.sn.railway.app.RailwayApplication;
+import com.sn.railway.custom.SnEditText;
 import com.sn.railway.custom.SnTextView;
+import com.sn.railway.main.DetailsActivity;
 import com.sn.railway.objects.Train_Object;
 
 import java.util.ArrayList;
@@ -23,19 +24,20 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class OrderFragment extends Fragment {
+public class SearchFragment extends Fragment {
 
+
+    @Bind(R.id.etSearchText)
+    SnEditText etSearchText;
 
     @Bind(R.id.rv)
     RecyclerView rv;
-
-    @Bind(R.id.linSearch)
-    LinearLayout linSearch;
 
     MyRecyclerViewAdapter myRecyclerViewAdapter;
 
@@ -48,7 +50,10 @@ public class OrderFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_recyclerview, container, false);
     }
 
-
+    @OnClick(R.id.btnSearch)
+    public void onClickSearch(View view){
+        etSearchText.setText("");
+    }
 
 
     @Override
@@ -61,7 +66,6 @@ public class OrderFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(llm);
 
-        linSearch.setVisibility(View.GONE);
 
         List<Train_Object> myDataset = new ArrayList<>();
         myRecyclerViewAdapter = new MyRecyclerViewAdapter(myDataset);
@@ -76,7 +80,7 @@ public class OrderFragment extends Fragment {
         ((MyRecyclerViewAdapter) myRecyclerViewAdapter).setOnItemClickListener(new MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-
+                Base_Activity.callActivity(DetailsActivity.class,null);
             }
         });
     }
@@ -186,7 +190,7 @@ public class OrderFragment extends Fragment {
         public MyRecyclerViewAdapter.DataObjectHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.fragment_home_list_item, parent, false);
+                    .inflate(R.layout.fragment_search_list_item, parent, false);
 
 
             MyRecyclerViewAdapter.DataObjectHolder dataObjectHolder = new MyRecyclerViewAdapter.DataObjectHolder(view);
